@@ -17,7 +17,9 @@ const Notification = ({ title, message, type = notificationTypes.info }) => {
 
   return (
     <div className={notificationClassName}>
-      <div className={`${baseClass}-leftIcon`}>🅰️</div>
+      <div className={`${baseClass}-leftIcon`}>
+        <div className={`${baseClass}-leftIcon-container`}>🅰️</div>
+      </div>
       <div className={`${baseClass}-textContainer`}>
         <h4 className={`${baseClass}-textContainer-title`}>
           {title || capitalize(type)}
