@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
+
 import './style.scss'
 import { capitalize } from '../utils'
-import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
 
 const baseClass = 'notifier-notification'
 export const notificationTypes = {
