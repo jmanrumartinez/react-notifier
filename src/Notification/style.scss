@@ -1,9 +1,14 @@
+$notifier-notification-spacing: 40px;
+
 .notifier-notification {
   width: 32rem;
   height: 6.25rem;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   display: flex;
+  position: fixed;
+  bottom: $notifier-notification-spacing;
+  right: $notifier-notification-spacing;
 
   &-leftIcon {
     flex: 0.5;
