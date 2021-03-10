@@ -16,11 +16,17 @@
       height: 50px;
       border-radius: 25px;
       background-color: #ffffff40;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
   &-rightIcon {
     flex: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &-textContainer {

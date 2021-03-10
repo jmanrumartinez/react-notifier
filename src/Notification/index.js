@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import './style.scss'
 import { capitalize } from '../utils'
+import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
 
 const baseClass = 'notifier-notification'
 export const notificationTypes = {
@@ -11,6 +12,13 @@ export const notificationTypes = {
   success: 'success',
   info: 'info'
 }
+const iconProps = { color: 'white', size: 28 }
+const typesIcons = {
+  [notificationTypes.error]: <WarningCircle {...iconProps} />,
+  [notificationTypes.warning]: <Warning {...iconProps} />,
+  [notificationTypes.success]: <CheckCircle {...iconProps} />,
+  [notificationTypes.info]: <Info {...iconProps} />
+}
 
 const Notification = ({ title, message, type = notificationTypes.info }) => {
   const notificationClassName = cx([baseClass, `${baseClass}-${type}`])
@@ -18,7 +26,9 @@ const Notification = ({ title, message, type = notificationTypes.info }) => {
   return (
     <div className={notificationClassName}>
       <div className={`${baseClass}-leftIcon`}>
-        <div className={`${baseClass}-leftIcon-container`}>🅰️</div>
+        <div className={`${baseClass}-leftIcon-container`}>
+          {typesIcons[type]}
+        </div>
       </div>
       <div className={`${baseClass}-textContainer`}>
         <h4 className={`${baseClass}-textContainer-title`}>
@@ -26,7 +36,9 @@ const Notification = ({ title, message, type = notificationTypes.info }) => {
         </h4>
         <p className={`${baseClass}-textContainer-message`}>{message}</p>
       </div>
-      <div className={`${baseClass}-rightIcon`}>❌</div>
+      <div className={`${baseClass}-rightIcon`}>
+        <X size={18} color='white' />
+      </div>
     </div>
   )
 }
