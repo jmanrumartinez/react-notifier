@@ -12,7 +12,7 @@ npm install --save react-notifier
 
 ## Pre-cooked notification components
 
-![precooked-notification-component](https://raw.githubusercontent.com/jmanrumartinez/react-notifier/master/statics/notification_components_example.png =600x300)
+<img src="https://raw.githubusercontent.com/jmanrumartinez/react-notifier/master/statics/notification_components_example.png" alt="Precooked notification component" width="425" height="350" />
 
 ## Usage
 
