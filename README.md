@@ -10,9 +10,9 @@
 npm install --save react-notifier
 ```
 
-## Pre-cooked notification component
+## Pre-cooked notification components
 
-![precooked-notification-component][https://raw.githubusercontent.com/jmanrumartinez/react-notifier/master/statics/notification_components_example.png]
+![precooked-notification-component](https://raw.githubusercontent.com/jmanrumartinez/react-notifier/master/statics/notification_components_example.png)
 
 ## Usage
 
