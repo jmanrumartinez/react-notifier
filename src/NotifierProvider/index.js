@@ -1,9 +1,11 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import Notification from '../Notification'
 import { generateUuid } from '../utils'
+import useNotify from './hooks/useNotify'
+import useNotifyRemove from './hooks/useNotifyRemove'
 
-const NOTIFIER_TYPES = {
+export const NOTIFIER_TYPES = {
   ADD: 'ADD',
   REMOVE: 'REMOVE'
 }
@@ -30,7 +32,7 @@ const notifierReducer = (state, action) => {
   }
 }
 
-const NotifierContext = createContext()
+export const NotifierContext = createContext()
 
 const NotifierProvider = ({ children }) => {
   const [notifications, dispatch] = useReducer(notifierReducer, [])
@@ -55,36 +57,5 @@ NotifierProvider.propTypes = {
   children: PropTypes.node
 }
 
+export { useNotify, useNotifyRemove }
 export default NotifierProvider
-
-const useNotifierContext = () => {
-  const context = useContext(NotifierContext)
-  if (!context)
-    throw new Error('useNotify should be used within a NotifierProvider')
-
-  return context
-}
-
-export const useNotify = () => {
-  const context = useNotifierContext()
-
-  const notify = ({ type, title, message }) =>
-    context.dispatch({
-      type: NOTIFIER_TYPES.ADD,
-      payload: { type, title, message }
-    })
-
-  return { notify }
-}
-
-export const useNotifyRemove = () => {
-  const context = useNotifierContext()
-
-  const remove = ({ id }) =>
-    context.dispatch({
-      type: NOTIFIER_TYPES.REMOVE,
-      payload: { id }
-    })
-
-  return { remove }
-}
