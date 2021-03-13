@@ -1,15 +1,4 @@
-import React from 'react'
-import NotifierProvider from './NotifierProvider'
+import Notification from './Notification'
+import NotifierProvider, { useNotify } from './NotifierProvider'
 
-export const ExampleComponent = () => {
-  return (
-    <NotifierProvider>
-      <div>
-        <button>Appear Success Notification</button>
-        <button>Appear Warning Notification</button>
-        <button>Appear Info Notification</button>
-        <button>Appear Success Notification</button>
-      </div>
-    </NotifierProvider>
-  )
-}
+export { NotifierProvider, useNotify, Notification }
