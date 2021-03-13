@@ -5,9 +5,10 @@ import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
 
 import './style.scss'
 import { capitalize } from '../utils'
+import { useNotifyRemove } from '../NotifierProvider'
 
 const baseClass = 'notifier-notification'
-export const notificationTypes = {
+const notificationTypes = {
   error: 'error',
   warning: 'warning',
   success: 'success',
@@ -21,8 +22,18 @@ const typesIcons = {
   [notificationTypes.info]: <Info {...iconProps} />
 }
 
-const Notification = ({ title, message, type = notificationTypes.info }) => {
+const Notification = ({
+  id,
+  title,
+  message,
+  type = notificationTypes.info
+}) => {
   const notificationClassName = cx([baseClass, `${baseClass}-${type}`])
+  const { remove } = useNotifyRemove()
+
+  const handleClickClose = () => {
+    remove({ id })
+  }
 
   return (
     <div className={notificationClassName}>
@@ -37,7 +48,10 @@ const Notification = ({ title, message, type = notificationTypes.info }) => {
         </h4>
         <p className={`${baseClass}-textContainer-message`}>{message}</p>
       </div>
-      <div className={`${baseClass}-rightIcon`}>
+      <div
+        className={`${baseClass}-rightIcon`}
+        onClick={() => handleClickClose()}
+      >
         <X size={18} color='white' />
       </div>
     </div>
@@ -48,5 +62,7 @@ Notification.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string
 }
+
+Notification.types = notificationTypes
 
 export default Notification
