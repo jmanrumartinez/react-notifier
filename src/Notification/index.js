@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
@@ -30,10 +30,26 @@ const Notification = ({
 }) => {
   const notificationClassName = cx([baseClass, `${baseClass}-${type}`])
   const { remove } = useNotifyRemove()
+  const [progressBarWidth, setProgressBarWidth] = useState(0)
 
   const handleClickClose = () => {
     remove({ id })
   }
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setProgressBarWidth((prevValue) => prevValue + 25),
+      500
+    )
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    if (progressBarWidth >= 125) {
+      remove({ id })
+    }
+  }, [progressBarWidth])
 
   return (
     <div className={notificationClassName}>
@@ -54,6 +70,10 @@ const Notification = ({
       >
         <X size={18} color='white' />
       </div>
+      <div
+        className={`${baseClass}-progressBar`}
+        style={{ width: `${progressBarWidth}%` }}
+      />
     </div>
   )
 }

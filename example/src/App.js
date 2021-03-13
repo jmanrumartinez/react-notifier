@@ -48,6 +48,17 @@ const App = () => {
       >
         Appear Error Notification
       </button>
+      <button
+        onClick={() =>
+          notify({
+            type: Notification.types.info,
+            title: 'Custom title :)',
+            message: 'Info notification from Button with custom title!'
+          })
+        }
+      >
+        Appear Info Notification with custom title
+      </button>
     </div>
   )
 }

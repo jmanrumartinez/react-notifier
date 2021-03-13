@@ -10,6 +10,17 @@ $notifier-notification-spacing: 40px;
   bottom: $notifier-notification-spacing;
   right: $notifier-notification-spacing;
 
+  &-progressBar {
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 0 4px;
+    content: '';
+    background-color: #ffffff70;
+    width: 0%;
+    height: 6px;
+    transition: width 0.5s linear;
+  }
+
   &-leftIcon {
     flex: 0.5;
     display: flex;
@@ -41,6 +52,7 @@ $notifier-notification-spacing: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   &-textContainer {

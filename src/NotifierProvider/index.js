@@ -38,15 +38,15 @@ const NotifierProvider = ({ children }) => {
   return (
     <NotifierContext.Provider value={{ dispatch }}>
       {children}
-      {notifications.map((notification) => (
+      {notifications[0] && (
         <Notification
-          key={notification.id}
-          id={notification.id}
-          title={notification.title}
-          message={notification.message}
-          type={notification.type}
+          key={notifications[0].id}
+          id={notifications[0].id}
+          title={notifications[0].title}
+          message={notifications[0].message}
+          type={notifications[0].type}
         />
-      ))}
+      )}
     </NotifierContext.Provider>
   )
 }
@@ -65,7 +65,6 @@ const useNotifierContext = () => {
   return context
 }
 
-// TODO: A function to add Notification to the queue to be displayed
 export const useNotify = () => {
   const context = useNotifierContext()
 
