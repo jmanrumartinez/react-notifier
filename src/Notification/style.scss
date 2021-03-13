@@ -1,5 +1,14 @@
 $notifier-notification-spacing: 40px;
 
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .notifier-notification {
   width: 32rem;
   height: 6.25rem;
@@ -18,7 +27,7 @@ $notifier-notification-spacing: 40px;
     background-color: #ffffff70;
     width: 0%;
     height: 6px;
-    transition: width 0.5s linear;
+    animation: progressBar 2s ease-out;
   }
 
   &-leftIcon {

@@ -30,26 +30,15 @@ const Notification = ({
 }) => {
   const notificationClassName = cx([baseClass, `${baseClass}-${type}`])
   const { remove } = useNotifyRemove()
-  const [progressBarWidth, setProgressBarWidth] = useState(0)
+  const progressBarRef = createRef()
 
-  const handleClickClose = () => {
+  const handleRemove = () => {
     remove({ id })
   }
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setProgressBarWidth((prevValue) => prevValue + 25),
-      500
-    )
-
-    return () => clearInterval(interval)
+    progressBarRef.current.addEventListener('animationend', handleRemove)
   }, [])
-
-  useEffect(() => {
-    if (progressBarWidth >= 125) {
-      remove({ id })
-    }
-  }, [progressBarWidth])
 
   return (
     <div className={notificationClassName}>
@@ -64,16 +53,10 @@ const Notification = ({
         </h4>
         <p className={`${baseClass}-textContainer-message`}>{message}</p>
       </div>
-      <div
-        className={`${baseClass}-rightIcon`}
-        onClick={() => handleClickClose()}
-      >
+      <div className={`${baseClass}-rightIcon`} onClick={() => handleRemove()}>
         <X size={18} color='white' />
       </div>
-      <div
-        className={`${baseClass}-progressBar`}
-        style={{ width: `${progressBarWidth}%` }}
-      />
+      <div className={`${baseClass}-progressBar`} ref={progressBarRef} />
     </div>
   )
 }
