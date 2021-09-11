@@ -1,0 +1,13 @@
+$notifier-notification-spacing: 40px;
+
+.notification-container {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  bottom: $notifier-notification-spacing;
+  right: $notifier-notification-spacing;
+
+  & > div {
+    margin-top: 8px;
+  }
+}

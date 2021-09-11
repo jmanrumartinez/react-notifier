@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
+import './index.scss'
 import Notification from '../Notification'
 import { generateUuid } from '../utils'
 import useNotify from './hooks/useNotify'
@@ -40,15 +41,17 @@ const NotifierProvider = ({ children }) => {
   return (
     <NotifierContext.Provider value={{ dispatch }}>
       {children}
-      {notifications[0] && (
-        <Notification
-          key={notifications[0].id}
-          id={notifications[0].id}
-          title={notifications[0].title}
-          message={notifications[0].message}
-          type={notifications[0].type}
-        />
-      )}
+      <div className='notification-container'>
+        {notifications.map((notification) => (
+          <Notification
+            key={notification.id}
+            id={notification.id}
+            title={notification.title}
+            message={notification.message}
+            type={notification.type}
+          />
+        ))}
+      </div>
     </NotifierContext.Provider>
   )
 }
