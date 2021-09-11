@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { CheckCircle, Info, WarningCircle, Warning, X } from 'phosphor-react'
@@ -30,7 +30,7 @@ const Notification = ({
 }) => {
   const notificationClassName = cx([baseClass, `${baseClass}-${type}`])
   const { remove } = useNotifyRemove()
-  const progressBarRef = createRef()
+  const progressBarRef = useRef()
 
   const handleRemove = () => {
     remove({ id })
